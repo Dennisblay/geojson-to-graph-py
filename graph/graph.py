@@ -36,17 +36,10 @@ class Graph(object):
         self.edges = defaultdict(list)
         self.weights = {}
 
-    def add_node(self, from_node: Node, to_node: Node, weight, is_adjacent: bool):
+    def add_node(self, from_node: Node, to_node: Node, weight, are_neighbors: bool):
         # Note: assumes edges are bi-directional
-        if is_adjacent:
+        if are_neighbors:
             self.edges[from_node.name].append(to_node.name)
             self.edges[to_node.name].append(from_node.name)
             self.weights[(from_node.name, to_node.name)] = weight
             self.weights[(to_node.name, from_node.name)] = weight
-
-        self.edges[from_node.name].append(to_node.name)
-        self.edges[to_node.name].append(from_node.name)
-        self.weights[(from_node.name, to_node.name)] = weight
-        self.weights[(to_node.name, from_node.name)] = weight
-
-# %%

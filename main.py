@@ -26,7 +26,9 @@ for index, current_row in gdf.iterrows():
         )
 
         new_graph.add_node(from_node=from_node, to_node=to_node,
-                           weight=get_weight(from_node=from_node, to_node=to_node))
+                           weight=get_weight(from_node=from_node,
+                                             to_node=to_node),
+                           are_neighbors=is_adjacent(prev_coords, curr_coords))
     prev_row = current_row
 
 print(new_graph.edges)
