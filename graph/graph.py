@@ -1,14 +1,25 @@
 from collections import defaultdict
+import math
+
+
+class Node(object):
+
+    def __init__(self, point_id=None, name=None, x=None, y=None):
+        self.point_id = point_id
+        self.name = name
+        self.x = x
+        self.y = y
+
+
+def get_weight(from_node: Node, to_node: Node) -> float:
+    # Euclidean distance
+    delta_y = to_node.y - from_node.y
+    delta_x = to_node.x - from_node.x
+    distance = math.sqrt((delta_y ** 2 + delta_x ** 2))
+    return distance
 
 
 class Graph(object):
-    class Node(object):
-
-        def __init__(self, point_id=None, name=None, x=None, y=None):
-            self.point_id = point_id
-            self.name = name
-            self.x = x
-            self.y = y
 
     def __init__(self):
         """
@@ -21,9 +32,11 @@ class Graph(object):
         self.edges = defaultdict(list)
         self.weights = {}
 
-    def add_node(self, from_node, to_node, weight):
+    def add_node(self, from_node: Node, to_node: Node, weight):
         # Note: assumes edges are bi-directional
-        self.edges[from_node].append(to_node)
-        self.edges[to_node].append(from_node)
-        self.weights[(from_node, to_node)] = weight
-        self.weights[(to_node, from_node)] = weight
+        self.edges[from_node.name].append(to_node.name)
+        self.edges[to_node.name].append(from_node.name)
+        self.weights[(from_node.name, to_node.name)] = weight
+        self.weights[(to_node.name, from_node.name)] = weight
+
+# %%
