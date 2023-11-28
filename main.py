@@ -1,5 +1,5 @@
 import geopandas as gdp
-from graph.graph import Graph, Node, get_weight
+from graph.graph import Graph, Node, get_weight, is_adjacent
 from pprint import pprint
 
 gdf = gdp.read_file("paths.geojson")
@@ -10,8 +10,7 @@ for index, current_row in gdf.iterrows():
     if prev_row is not None:
         curr_coords = list(current_row.geometry.coords)
         prev_coords = list(prev_row.geometry.coords)
-        print(curr_coords[0][1])
-        print(prev_coords[0][0])
+
         from_node = Node(
             point_id=prev_row.id,
             name=prev_row.Location,

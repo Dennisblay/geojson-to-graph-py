@@ -19,6 +19,10 @@ def get_weight(from_node: Node, to_node: Node) -> float:
     return distance
 
 
+def is_adjacent(previous, current) -> bool:
+    return previous[-1] == current[0]
+
+
 class Graph(object):
 
     def __init__(self):
@@ -32,8 +36,14 @@ class Graph(object):
         self.edges = defaultdict(list)
         self.weights = {}
 
-    def add_node(self, from_node: Node, to_node: Node, weight):
+    def add_node(self, from_node: Node, to_node: Node, weight, is_adjacent: bool):
         # Note: assumes edges are bi-directional
+        if is_adjacent:
+            self.edges[from_node.name].append(to_node.name)
+            self.edges[to_node.name].append(from_node.name)
+            self.weights[(from_node.name, to_node.name)] = weight
+            self.weights[(to_node.name, from_node.name)] = weight
+
         self.edges[from_node.name].append(to_node.name)
         self.edges[to_node.name].append(from_node.name)
         self.weights[(from_node.name, to_node.name)] = weight
