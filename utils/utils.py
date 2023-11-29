@@ -30,4 +30,5 @@ def get_weight(from_node: Node, to_node: Node) -> float:
 
 
 def is_adjacent(previous, current) -> bool:
-    return previous[-1] == current[0]
+    if previous is not None:
+        return previous.coords[-1] == current.coords[0]

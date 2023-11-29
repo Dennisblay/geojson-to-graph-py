@@ -18,6 +18,9 @@ for index, current_row in gdf.iterrows():
         x_to = curr_coords[1][0]  # X2
         y_to = curr_coords[1][1]  # Y2
 
+        # if not is_adjacent(previous=prev_multi_line, current=multi_line):
+        #     continue
+
         from_node = Node(
             x=x_from,
             y=y_from,
@@ -33,5 +36,6 @@ for index, current_row in gdf.iterrows():
         new_graph.add_node(from_node=from_node, to_node=to_node,
                            weight=get_weight(from_node=from_node,
                                              to_node=to_node))
+        prev_multi_line = multi_line
 pprint(new_graph.edges)
 pprint(new_graph.weights)
