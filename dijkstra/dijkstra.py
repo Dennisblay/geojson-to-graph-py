@@ -33,4 +33,4 @@ def dijkstra(graph, initial, end):
         current_node = next_node
     # Reverse path
     path = path[::-1]
-    return path
+    return shortest_paths[end][1], path
