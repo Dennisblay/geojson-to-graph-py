@@ -7,10 +7,3 @@ class Node(object):
         self.y = y
 
 
-class NodeContainer(object):
-
-    def __init__(self):
-        self.container = []
-
-    def add_node(self, node: Node):
-        self.container.append(node)

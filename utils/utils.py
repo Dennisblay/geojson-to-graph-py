@@ -25,8 +25,7 @@ def get_weight(from_node: Node, to_node: Node) -> float:
     # Euclidean distance
     delta_y = to_node.y - from_node.y
     delta_x = to_node.x - from_node.x
-    distance = math.sqrt((delta_y ** 2 + delta_x ** 2))
-    return distance
+    return math.sqrt((delta_y ** 2 + delta_x ** 2))
 
 
 def is_adjacent(previous, current) -> bool:
