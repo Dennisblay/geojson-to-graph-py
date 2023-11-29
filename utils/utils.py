@@ -3,14 +3,23 @@ import math
 from graph.graph import Node
 
 
-def generate_unique_key(data):
-    data_bytes = bytes(str(data), 'utf-8')
+class NodeKeyGenerator:
 
-    hash_object = hashlib.md5(data_bytes)
+    def __init__(self):
+        self.counter = 1
+        self.key_map = {}
 
-    unique_key = hash_object.hexdigest()
+    def generate_node_key(self, data):
+        if data in self.key_map:
+            return self.key_map[data]
 
-    return unique_key
+        key = f"n{self.counter}"
+        self.counter += 1
+        self.key_map[data] = key
+        return key
+
+
+# Usage
 
 
 def get_weight(from_node: Node, to_node: Node) -> float:
