@@ -1,5 +1,14 @@
 from collections import defaultdict
-from node import Node
+import csv
+
+
+class Node(object):
+
+    def __init__(self, point_id=None, label=None, x=None, y=None):
+        self.point_id = point_id
+        self.label = label
+        self.x = x
+        self.y = y
 
 
 class Graph(object):
@@ -25,3 +34,14 @@ class Graph(object):
         self.edges[to_node.label].append(from_node.label)
         self.weights[f"{from_node.label}-{to_node.label}"] = weight
         self.weights[f"{to_node.label}-{from_node.label}"] = weight
+
+    def nodes_to_csv(self, file_name="shortest_path.csv", path=None):
+        all_nodes = [self.nodes[node] for node in self.nodes]
+        if path is not None:
+            all_nodes = [self.nodes[node] for node in path]
+
+        headers = ['X', 'Y', 'L']
+        with open(file_name, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(headers)
+            writer.writerows(all_nodes)
