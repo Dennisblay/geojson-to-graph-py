@@ -4,9 +4,9 @@ import math
 
 class Node(object):
 
-    def __init__(self, point_id=None, name=None, x=None, y=None):
+    def __init__(self, point_id=None, label=None, x=None, y=None):
         self.point_id = point_id
-        self.name = name
+        self.label = label
         self.x = x
         self.y = y
 
@@ -36,10 +36,9 @@ class Graph(object):
         self.edges = defaultdict(list)
         self.weights = {}
 
-    def add_node(self, from_node: Node, to_node: Node, weight, are_neighbors: bool):
+    def add_node(self, from_node: Node, to_node: Node, weight):
         # Note: assumes edges are bi-directional
-        if are_neighbors:
-            self.edges[from_node.name].append(to_node.name)
-            self.edges[to_node.name].append(from_node.name)
-            self.weights[(from_node.name, to_node.name)] = weight
-            self.weights[(to_node.name, from_node.name)] = weight
+        self.edges[from_node.label].append(to_node.label)
+        self.edges[to_node.label].append(from_node.label)
+        self.weights[(from_node.label, to_node.label)] = weight
+        self.weights[(to_node.label, from_node.label)] = weight
