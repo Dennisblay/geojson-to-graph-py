@@ -16,5 +16,5 @@ else:
 Point (-1.56487150913662632 6.67332465855798684)
 """
 # point = Point (-1.56487150913662632,  6.67332465855798684)
-query = graph.query_closest_location(x=-1.56487150913662632, y=6.67332465855798684, label="park_point")
+query = graph.query_closest_location(x=-175195.91816760387632, y=745551.944510839, label="park_point")
 print(query)

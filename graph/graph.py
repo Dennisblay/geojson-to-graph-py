@@ -29,19 +29,21 @@ class Graph(object):
     def add_node(self, from_node: Node, to_node: Node, weight):
         # Note: assumes edges are bi-directional
 
-        self.nodes[from_node.label] = (from_node.x, from_node.y, from_node.label)
-        self.nodes[to_node.label] = (to_node.x, to_node.y, to_node.label)
+        self.nodes[from_node.label] = from_node
+        self.nodes[to_node.label] = to_node
+        # self.nodes[from_node.label] = (from_node.x, from_node.y, from_node.label)
+        # self.nodes[to_node.label] = (to_node.x, to_node.y, to_node.label)
         self.edges[from_node.label].append(to_node.label)
         self.edges[to_node.label].append(from_node.label)
         self.weights[f"{from_node.label}-{to_node.label}"] = weight
         self.weights[f"{to_node.label}-{from_node.label}"] = weight
 
     def nodes_to_csv(self, file_name=None, path=None):
-        all_nodes = [self.nodes[node] for node in self.nodes]
+        all_nodes = [(self.nodes[node].x, self.nodes[node].y, self.nodes[node].label) for node in self.nodes]
         if path is not None:
             if file_name is None:
                 file_name = "shortest_path.csv"
-            all_nodes = [self.nodes[node] for node in path]
+            all_nodes = [(self.nodes[node].x, self.nodes[node].y, self.nodes[node].label) for node in path]
         if file_name is None:
             file_name = "nodes.csv"
 
