@@ -20,14 +20,6 @@ class NodeKeyGenerator:
         return key
 
 
-# Usage
-
-
-def is_adjacent(previous, current) -> bool:
-    if previous is not None:
-        return previous.coords[-1] == current.coords[0]
-
-
 def read_to_graph(file_name):
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
