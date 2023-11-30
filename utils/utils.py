@@ -34,7 +34,7 @@ def is_adjacent(previous, current) -> bool:
         return previous.coords[-1] == current.coords[0]
 
 
-def reader(file_name):
+def read_to_graph(file_name):
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
 
