@@ -41,6 +41,7 @@ def read_to_graph(file_name):
     gdf = gdp.read_file(file_name)
 
     for index, current_row in gdf.iterrows():
+
         current_segment = list(current_row.geometry.coords)
         if len(current_segment) != 0:
             prev_coords_pair = None

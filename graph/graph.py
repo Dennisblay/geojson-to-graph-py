@@ -41,7 +41,14 @@ class Graph(object):
             all_nodes = [self.nodes[node] for node in path]
 
         headers = ['X', 'Y', 'L']
-        with open(file_name, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(headers)
-            writer.writerows(all_nodes)
+        try:
+            with open(file_name, 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(headers)
+                writer.writerows(all_nodes)
+
+        except FileExistsError:
+            print("Could not export")
+
+        else:
+            print("exported nodes successfully")
