@@ -1,3 +1,3 @@
-### 2D Spatial Graph/Network 
-#####   Grap for modeling 2D spatial data in python
+### Spatial Graph/Network 
+#####   Graph for modeling GeoJson spatial data in python
 
