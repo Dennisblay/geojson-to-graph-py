@@ -57,5 +57,6 @@ class Graph(object):
                     for next_neighbor in self.edges[node_to_compare]:
                         self.edges[node].add(next_neighbor)
                     del self.edges[node_to_compare]
+                    # recursively replace it with the new Node's label
 
         pass
