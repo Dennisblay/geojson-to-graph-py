@@ -22,7 +22,7 @@ class Graph(object):
                with the two nodes as a tuple as the key
                e.g. {('X', 'A'): 7, ('X', 'B'): 2, ...}
                """
-        self.edges = defaultdict(list)
+        self.edges = defaultdict(set)
         self.nodes = {}
         self.weights = {}
 
@@ -31,10 +31,8 @@ class Graph(object):
 
         self.nodes[from_node.label] = from_node
         self.nodes[to_node.label] = to_node
-        # self.nodes[from_node.label] = (from_node.x, from_node.y, from_node.label)
-        # self.nodes[to_node.label] = (to_node.x, to_node.y, to_node.label)
-        self.edges[from_node.label].append(to_node.label)
-        self.edges[to_node.label].append(from_node.label)
+        self.edges[from_node.label].add(to_node.label)
+        self.edges[to_node.label].add(from_node.label)
         self.weights[f"{from_node.label}-{to_node.label}"] = weight
         self.weights[f"{to_node.label}-{from_node.label}"] = weight
 
