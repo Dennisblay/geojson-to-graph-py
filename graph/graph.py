@@ -1,4 +1,5 @@
 from collections import defaultdict
+from utils.utils import get_weight
 import csv
 
 
@@ -12,6 +13,7 @@ class Node(object):
 
 
 class Graph(object):
+    TOLERANCE = 30e-2
 
     def __init__(self):
         """
@@ -45,3 +47,10 @@ class Graph(object):
             writer = csv.writer(file)
             writer.writerow(headers)
             writer.writerows(all_nodes)
+
+    def dissolve_close_nodes(self):
+        for node in self.nodes:
+            for node_to_compare in self.nodes:
+                if get_weight(node, node_to_compare) < self.TOLERANCE:
+                    pass
+        pass
