@@ -29,11 +29,6 @@ def get_weight(from_node: Node, to_node: Node) -> float:
     return math.sqrt((delta_y ** 2 + delta_x ** 2))
 
 
-def is_adjacent(previous, current) -> bool:
-    if previous is not None:
-        return previous.coords[-1] == current.coords[0]
-
-
 def reader(file_name):
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
