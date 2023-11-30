@@ -1,4 +1,5 @@
 import math
+from shapely.geometry import LineString
 import geopandas as gdp
 from graph.graph import Node, Graph
 
@@ -42,10 +43,12 @@ def read_to_graph(file_name):
 
     for index, current_row in gdf.iterrows():
 
-        current_segment = list(current_row.geometry.coords)
-        if len(current_segment) != 0:
+        densified_segment = list(densify_segment(current_row=current_row, distance=2).coords)
+
+        if len(densified_segment) != 0:
+
             prev_coords_pair = None
-            for (x, y) in current_segment:
+            for (x, y) in densified_segment:
                 if prev_coords_pair is not None:
                     from_node = Node(
                         x=x,
@@ -66,3 +69,10 @@ def read_to_graph(file_name):
                 prev_coords_pair = x, y
 
     return new_graph
+
+
+def densify_segment(current_row, distance=2):
+    current_segment = current_row.geometry
+    length_of_segment = current_segment.length
+    points = [current_segment.interpolate(i) for i in range(distance, math.floor(length_of_segment), distance)]
+    return LineString(list(current_segment.coords) + [(point.x, point.y) for point in points])

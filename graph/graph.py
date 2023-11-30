@@ -35,10 +35,14 @@ class Graph(object):
         self.weights[f"{from_node.label}-{to_node.label}"] = weight
         self.weights[f"{to_node.label}-{from_node.label}"] = weight
 
-    def nodes_to_csv(self, file_name="shortest_path.csv", path=None):
+    def nodes_to_csv(self, file_name=None, path=None):
         all_nodes = [self.nodes[node] for node in self.nodes]
         if path is not None:
+            if file_name is None:
+                file_name = "shortest_path.csv"
             all_nodes = [self.nodes[node] for node in path]
+        if file_name is None:
+            file_name = "nodes.csv"
 
         headers = ['X', 'Y', 'L']
         try:
