@@ -1,4 +1,5 @@
 from collections import defaultdict
+import math
 import csv
 
 
@@ -56,3 +57,15 @@ class Graph(object):
 
         else:
             print("exported nodes successfully")
+
+    def query_closest_location(self, x, y, label):
+        other_node = Node(x=x, y=y, label=label)
+        return min(
+            [(self.get_weight(other_node, self.nodes[node]), node) for node in self.nodes])
+
+    @staticmethod
+    def get_weight(from_node: Node, to_node: Node) -> float:
+        # Euclidean distance
+        delta_y = to_node.y - from_node.y
+        delta_x = to_node.x - from_node.x
+        return math.sqrt((delta_y ** 2 + delta_x ** 2))

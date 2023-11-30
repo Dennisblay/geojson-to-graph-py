@@ -23,13 +23,6 @@ class NodeKeyGenerator:
 # Usage
 
 
-def get_weight(from_node: Node, to_node: Node) -> float:
-    # Euclidean distance
-    delta_y = to_node.y - from_node.y
-    delta_x = to_node.x - from_node.x
-    return math.sqrt((delta_y ** 2 + delta_x ** 2))
-
-
 def is_adjacent(previous, current) -> bool:
     if previous is not None:
         return previous.coords[-1] == current.coords[0]
@@ -64,8 +57,8 @@ def read_to_graph(file_name):
                     )
 
                     new_graph.add_node(from_node=from_node, to_node=to_node,
-                                       weight=get_weight(from_node=from_node,
-                                                         to_node=to_node))
+                                       weight=new_graph.get_weight(from_node=from_node,
+                                                                   to_node=to_node))
                 prev_coords_pair = x, y
 
     return new_graph
