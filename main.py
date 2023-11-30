@@ -12,9 +12,5 @@ if shortest_path:
 else:
     print("RouteNotPossible")
 
-"""
-Point (-1.56487150913662632 6.67332465855798684)
-"""
-# point = Point (-1.56487150913662632,  6.67332465855798684)
-query = graph.query_closest_location(x=-175195.91816760387632, y=745551.944510839, label="park_point")
-print(query)
+distance, closest_node = graph.query_closest_location(x=-175195.91816760387632, y=745551.944510839, label="park_point")
+graph.node_to_csv(closest_node)

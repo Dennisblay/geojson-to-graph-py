@@ -60,10 +60,27 @@ class Graph(object):
         else:
             print("exported nodes successfully")
 
+    @staticmethod
+    def node_to_csv(node, file_name="closest_node.csv"):
+
+        headers = ['X', 'Y', 'L']
+        try:
+            with open(file_name, 'w', newline='') as file:
+                writer = csv.writer(file)
+                writer.writerow(headers)
+                writer.writerows([[node.x, node.y, node.label]])
+
+        except FileExistsError:
+            print("Could not export")
+
+        else:
+            print("exported node successfully")
+
     def query_closest_location(self, x, y, label):
         other_node = Node(x=x, y=y, label=label)
+
         return min(
-            [(self.get_weight(other_node, self.nodes[node]), node) for node in self.nodes])
+            [(self.get_weight(other_node, self.nodes[node]), self.nodes[node]) for node in self.nodes])
 
     @staticmethod
     def get_weight(from_node: Node, to_node: Node) -> float:
