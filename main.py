@@ -12,5 +12,6 @@ if shortest_path:
 else:
     print("RouteNotPossible")
 
-distance, closest_node = graph.query_closest_location(x=-175195.91816760387632, y=745551.944510839, label="park_point")
+distance, closest_node = graph.query_closest_location(x=-174200.003671526181279, y=744552.949123957310803,
+                                                      label="park_point")
 graph.node_to_csv(closest_node)
