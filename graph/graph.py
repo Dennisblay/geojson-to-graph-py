@@ -51,10 +51,8 @@ class Graph(object):
                 writer = csv.writer(file)
                 writer.writerow(headers)
                 writer.writerows(all_nodes)
-
         except FileExistsError:
             print("Could not export")
-
         else:
             print("exported nodes successfully")
 
@@ -67,10 +65,8 @@ class Graph(object):
                 writer = csv.writer(file)
                 writer.writerow(headers)
                 writer.writerows([[node.x, node.y, node.label]])
-
         except FileExistsError:
             print("Could not export")
-
         else:
             print("exported node successfully")
 
