@@ -20,7 +20,7 @@ class NodeKeyGenerator:
         return key
 
 
-def read_to_graph(file_name):
+def read_to_graph(file_name, should_densify_segments=False):
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
 
@@ -28,30 +28,31 @@ def read_to_graph(file_name):
 
     for index, current_row in gdf.iterrows():
 
-        densified_segment = list(densify_segment(current_row=current_row, distance=2).coords)
+        if should_densify_segments:
+            current_segment = list(densify_segment(current_row=current_row, distance=2).coords)
+        else:
+            current_segment = list(current_row.geometry.coords)
 
-        if len(densified_segment) != 0:
+        prev_coords_pair = None
+        for (x, y) in current_segment:
+            if prev_coords_pair is not None:
+                from_node = Node(
+                    x=x,
+                    y=y,
+                    label=node_key_generator.generate_node_key(f"{x}-{y}")
+                )
 
-            prev_coords_pair = None
-            for (x, y) in densified_segment:
-                if prev_coords_pair is not None:
-                    from_node = Node(
-                        x=x,
-                        y=y,
-                        label=node_key_generator.generate_node_key(f"{x}-{y}")
-                    )
+                x_to, y_to = prev_coords_pair
+                to_node = Node(
+                    x=x_to,
+                    y=y_to,
+                    label=node_key_generator.generate_node_key(f"{x_to}-{y_to}")
+                )
 
-                    x_to, y_to = prev_coords_pair
-                    to_node = Node(
-                        x=x_to,
-                        y=y_to,
-                        label=node_key_generator.generate_node_key(f"{x_to}-{y_to}")
-                    )
-
-                    new_graph.add_node(from_node=from_node, to_node=to_node,
-                                       weight=new_graph.get_weight(from_node=from_node,
-                                                                   to_node=to_node))
-                prev_coords_pair = x, y
+                new_graph.add_node(from_node=from_node, to_node=to_node,
+                                   weight=new_graph.get_weight(from_node=from_node,
+                                                               to_node=to_node))
+            prev_coords_pair = x, y
 
     return new_graph
 
