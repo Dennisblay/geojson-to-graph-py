@@ -19,7 +19,6 @@ class NodeKeyGenerator:
         self.key_map[data] = key
         return key
 
-
 def read_to_graph(file_name, should_densify_segments=False):
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
