@@ -1,5 +1,6 @@
 import math
-from shapely.geometry import LineString
+from shapely import Point, LineString
+from shapely.wkt import loads
 import geopandas as gdp
 from graph.graph import Node, Graph
 
@@ -67,3 +68,35 @@ def densify_segment(current_row, distance=2):
 
     points = [current_segment.interpolate(i) for i in range(distance, math.floor(length_of_segment), distance)]
     return LineString(list(current_segment.coords) + [(point.x, point.y) for point in points])
+
+
+def line_densify(polyline, step_dist):
+    coords = list(polyline.coords)
+    segments = list(zip(coords[:-1], coords[1:]))
+    dens_coords = []
+    for i, segment in enumerate(segments):
+        a, b = segment
+        seg_coords = segment_densify(a, b, step_dist)
+        dens_coords.extend(seg_coords if i == 0 else seg_coords[1:])
+    return LineString(dens_coords)
+
+
+def segment_densify(pt_a, pt_b, step_dist):
+    pt_b_geom = Point(pt_b)
+    geom = LineString([pt_a, pt_b])
+    inter_dist = step_dist
+    dense_coords = [pt_a]
+    while inter_dist < geom.length:
+        pt = geom.interpolate(inter_dist)
+        gap = pt.distance(pt_b_geom)
+        if gap > step_dist:
+            dense_coords.append(pt)
+        inter_dist += step_dist
+    dense_coords.append(pt_b)
+    return dense_coords
+
+
+if __name__ == '__main__':
+    wkt = "LINESTRING ( 35 758, 1480 729 )"
+    geom = line_densify(loads(wkt), 50)
+    print(geom)
