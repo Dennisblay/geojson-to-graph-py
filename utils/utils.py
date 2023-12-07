@@ -20,9 +20,7 @@ class NodeKeyGenerator:
         return key
 
 
-
-
-def read_to_graph(file_name, should_densify_segments=False):
+def read_to_graph(file_name, should_densify_segments=False, distance=2):
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
 
@@ -31,7 +29,7 @@ def read_to_graph(file_name, should_densify_segments=False):
     for index, current_row in gdf.iterrows():
 
         if should_densify_segments:
-            current_segment = list(densify_segment(current_row=current_row, distance=2).coords)
+            current_segment = list(densify_segment(current_row=current_row, distance=distance).coords)
         else:
             current_segment = list(current_row.geometry.coords)
 
@@ -52,8 +50,8 @@ def read_to_graph(file_name, should_densify_segments=False):
                 )
 
                 new_graph.add_node(from_node=from_node, to_node=to_node,
-                                   weight=new_graph.get_weight(from_node=from_node,
-                                                               to_node=to_node))
+                                   weight=round(new_graph.get_weight(from_node=from_node,
+                                                                     to_node=to_node), 2))
             prev_coords_pair = x, y
 
     return new_graph
@@ -62,5 +60,10 @@ def read_to_graph(file_name, should_densify_segments=False):
 def densify_segment(current_row, distance=2):
     current_segment = current_row.geometry
     length_of_segment = current_segment.length
+
+    # Check if segment length is smaller than the given distance
+    if length_of_segment < distance:
+        return current_segment  # Return the original segment
+
     points = [current_segment.interpolate(i) for i in range(distance, math.floor(length_of_segment), distance)]
     return LineString(list(current_segment.coords) + [(point.x, point.y) for point in points])

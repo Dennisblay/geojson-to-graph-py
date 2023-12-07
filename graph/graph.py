@@ -54,7 +54,7 @@ class Graph(object):
         except FileExistsError:
             print("Could not export")
         else:
-            print("exported nodes successfully")
+            print(f"exported nodes successfully to {file_name}")
 
     @staticmethod
     def node_to_csv(node, file_name="closest_node.csv"):

@@ -1,3 +1,5 @@
+from pprint import pprint
+
 
 def dijkstra(graph, initial, end):
     # shortest paths is a dict of nodes
@@ -25,8 +27,7 @@ def dijkstra(graph, initial, end):
             return 0, []
         # next node is the destination with the lowest weight
         current_node = min(next_destinations, key=lambda k: next_destinations[k][1])
-
-    # Work back through destinations in shortest path
+    # Work back through destinations in the shortest path
     path = []
     while current_node is not None:
         path.append(current_node)
