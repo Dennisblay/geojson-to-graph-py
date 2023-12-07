@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b10e0911-eefd-4e7a-9662-bd25b82c58d8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/New.csv" beforeDir="false" afterPath="$PROJECT_DIR$/New.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/closest_node.csv" beforeDir="false" afterPath="$PROJECT_DIR$/closest_node.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nodes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/nodes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,7 +56,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "densify__Doc",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "/home/denis/PycharmProjects/geojson-graph",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

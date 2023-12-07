@@ -59,18 +59,6 @@ def read_to_graph(file_name, should_densify_segments=False, distance=2):
     return new_graph
 
 
-def densify_segment(current_row, distance=2):
-    current_segment = current_row.geometry
-    length_of_segment = current_segment.length
-
-    # Check if segment length is smaller than the given distance
-    if length_of_segment < distance:
-        return current_segment  # Return the original segment
-
-    points = [current_segment.interpolate(i) for i in range(distance, math.floor(length_of_segment), distance)]
-    return LineString(list(current_segment.coords) + [(point.x, point.y) for point in points])
-
-
 def line_densify(polyline, step_dist):
     coords = list(polyline.coords)
     segments = list(zip(coords[:-1], coords[1:]))
@@ -97,6 +85,7 @@ def segment_densify(pt_a, pt_b, step_dist):
     return dense_coords
 
 
+# Example for segment densify
 if __name__ == '__main__':
     wkt = "LINESTRING ( 35 758, 1480 729 )"
     geom = line_densify(loads(wkt), 50)
