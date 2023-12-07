@@ -30,7 +30,8 @@ def read_to_graph(file_name, should_densify_segments=False, distance=2):
     for index, current_row in gdf.iterrows():
 
         if should_densify_segments:
-            current_segment = list(densify_segment(current_row=current_row, distance=distance).coords)
+            # current_segment = list(densify_segment(current_row=current_row, distance=distance).coords)
+            current_segment = list(line_densify(polyline=current_row.geometry, step_dist=2).coords)
         else:
             current_segment = list(current_row.geometry.coords)
 
