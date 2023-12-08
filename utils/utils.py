@@ -1,4 +1,3 @@
-import math
 from shapely import Point, LineString
 from shapely.wkt import loads
 import geopandas as gdp
