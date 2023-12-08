@@ -1,6 +1,7 @@
 from collections import defaultdict
 import math
 import csv
+from typing import Tuple, Any
 
 
 class Node(object):
@@ -70,7 +71,7 @@ class Graph(object):
         else:
             print("exported node successfully")
 
-    def query_closest_location(self, x, y, label):
+    def query_closest_location(self, x, y, label) -> Tuple[float, Node]:
         other_node = Node(x=x, y=y, label=label)
 
         return min(

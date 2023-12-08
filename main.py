@@ -7,22 +7,20 @@ if os.path.exists(path="paths.geojson"):
     graph = read_to_graph(file_name="paths.geojson", should_densify_segments=True, distance=2)
 
     """
-P1   (X,Y) -174330.937208184128394, 744500.627697278396226
-P2   (X,Y) -174245.345261112553999, 744662.047880616504699
+P1   (X,Y) -174320.829365919722477, 744498.63213670917321
     """
 
-    distance_from_query_point, closest_node = graph.query_closest_location(x=-174330.937208184128394,
-                                                                           y=744500.627697278396226174200,
+    distance_from_query_point, closest_node = graph.query_closest_location(x=-174320.829365919722477,
+                                                                           y=744498.63213670917321,
                                                                            label="P1")
     graph.node_to_csv(closest_node)  # Save to CSV for visualization
 
-    distance, shortest_path = dijkstra(graph=graph, initial="n1028",
-                                       end="n1881")  # From Query Location to N-Block(Node 624)
+    distance, shortest_path = dijkstra(graph=graph, initial=closest_node.label,
+                                       end="n1881")  # From Query Location P1 to N-Block(Node 624)
 
     if shortest_path:
-        # pprint(shortest_path)
-        graph.nodes_to_csv(paths=shortest_path, file_name="New.csv")
-        # graph.nodes_to_csv()
+        # graph.nodes_to_csv(paths=shortest_path, file_name="shortest_path_to_Nblock.csv")
+        graph.nodes_to_csv()
 
         print(f"{distance}m", f"From {shortest_path[0]} To {shortest_path[-1]}")
 
