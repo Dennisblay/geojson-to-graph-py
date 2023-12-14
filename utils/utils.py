@@ -51,8 +51,8 @@ def read_to_graph(file_name, should_densify_segments=False, distance=2):
                 )
 
                 new_graph.add_node(from_node=from_node, to_node=to_node,
-                                   weight=round(new_graph.get_weight(from_node=from_node,
-                                                                     to_node=to_node), 2))
+                                   weight=new_graph.get_weight(from_node=from_node,
+                                                                     to_node=to_node))
             prev_coords_pair = x, y
 
     return new_graph
