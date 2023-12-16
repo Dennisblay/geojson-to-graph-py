@@ -5,7 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b10e0911-eefd-4e7a-9662-bd25b82c58d8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/geojson-graph.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/geojson-graph.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jupyter-settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jupyter-settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/New.csv" beforeDir="false" afterPath="$PROJECT_DIR$/New.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SPTNB.csv" beforeDir="false" afterPath="$PROJECT_DIR$/SPTNB.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/all_nodes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/all_nodes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/closest_node.csv" beforeDir="false" afterPath="$PROJECT_DIR$/closest_node.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/database.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dijkstra/dijkstra.py" beforeDir="false" afterPath="$PROJECT_DIR$/dijkstra/dijkstra.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/graph/graph.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nodes.csv" beforeDir="false" afterPath="$PROJECT_DIR$/nodes.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paths.csv" beforeDir="false" afterPath="$PROJECT_DIR$/paths.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paths.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/paths.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paths_test.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/paths_test.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/point.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/point.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/point.qmd" beforeDir="false" afterPath="$PROJECT_DIR$/point.qmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query_points.geojson" beforeDir="false" afterPath="$PROJECT_DIR$/query_points.geojson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/query_points.qmd" beforeDir="false" afterPath="$PROJECT_DIR$/query_points.qmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortest_path.csv" beforeDir="false" afterPath="$PROJECT_DIR$/shortest_path.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortest_path_to_Nblock.csv" beforeDir="false" afterPath="$PROJECT_DIR$/shortest_path_to_Nblock.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shortest_path_to_Nblock_densified.csv" beforeDir="false" afterPath="$PROJECT_DIR$/shortest_path_to_Nblock_densified.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
