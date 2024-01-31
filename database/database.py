@@ -37,16 +37,3 @@ class Database:
             self.connection.rollback()
 
 
-db = Database(dbname='analysis', user='postgres', host='localhost')
-connected = db.connect()
-
-if connected:
-    # Execute a query and fetch the result
-    result = db.execute_query("SELECT * FROM persondetails", fetch=True)
-    print(result)
-
-    # Execute a query without fetching result (e.g., INSERT, UPDATE, DELETE)
-    # db.execute_query("INSERT INTO your_table (column1, column2) VALUES (value1, value2)")
-
-    # Close the connection when done
-    db.close()

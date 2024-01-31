@@ -14,6 +14,7 @@ CREATE TABLE "edges"
 
 CREATE TABLE "weights"
 (
+    "id"           bigint NOT NULL,
     "from_node_id" bigint NOT NULL,
     "to_node_id"   bigint NOT NULL,
     "distance"     double NOT NULL,
