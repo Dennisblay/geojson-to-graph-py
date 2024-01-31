@@ -1,7 +1,7 @@
 from collections import defaultdict
 import math
 import csv
-from typing import Tuple, Any
+from typing import Tuple
 
 
 class Node(object):
@@ -18,12 +18,12 @@ class Graph(object):
     def __init__(self):
         """
                self.edges is a dict of all possible next nodes
-               e.g. {'X': { 'A', 'B', 'C', 'E' }, ...}
+               e.g. {'X': [  'A', 'B', 'C', 'E'  ], ...}
                self.weights has all the weights between two nodes,
                with the two nodes as a tuple as the key
-               e.g. {('X-A'): 7, ('A-X'): 2, ...}
+               e.g. {(X, A): 7, (A, X): 2, ...}
                """
-        self.edges = defaultdict(set)
+        self.edges = defaultdict(list)
         self.nodes = {}
         self.weights = {}
 
@@ -32,10 +32,10 @@ class Graph(object):
 
         self.nodes[from_node.label] = from_node
         self.nodes[to_node.label] = to_node
-        self.edges[from_node.label].add(to_node.label)
-        self.edges[to_node.label].add(from_node.label)
-        self.weights[f"{from_node.label}-{to_node.label}"] = weight
-        self.weights[f"{to_node.label}-{from_node.label}"] = weight
+        self.edges[from_node.label].append(to_node.label)
+        self.edges[to_node.label].append(from_node.label)
+        self.weights[(from_node.label, to_node.label)] = weight
+        self.weights[(to_node.label, from_node.label)] = weight
 
     def nodes_to_csv(self, file_name=None, paths=None):
         all_nodes = [(self.nodes[node].x, self.nodes[node].y, self.nodes[node].label) for node in self.nodes]

@@ -1,7 +1,33 @@
+
+from database.db import Database
 from shapely import Point, LineString
 from shapely.wkt import loads
 import geopandas as gdp
 from graph.graph import Node, Graph
+import re
+
+QUERIES = {
+    'nodes': """
+        
+        INSERT INTO nodes (name, point_geom)
+        VALUES (%s, ST_GeomFromText(%s));
+        
+        """,
+
+    'weight': """
+        
+        INSERT INTO weights (from_node_id, to_node_id, distance)
+        VALUES (%s, %s, %s);
+        
+        """,
+
+    'edges': """
+        
+        INSERT INTO edges (node_id, edges)
+        VALUES (%s, %s);
+        
+        """
+}
 
 
 class NodeKeyGenerator:
@@ -18,6 +44,47 @@ class NodeKeyGenerator:
         self.counter += 1
         self.key_map[data] = key
         return key
+
+
+def extract_node_id(node_label_string):
+    match = re.search(r'\d+', node_label_string)
+    return int(match.group()) if match else None
+
+
+def populate_db(graph):
+    db = Database(dbname='routes', user='postgres', host='localhost')
+    connected = db.connect()
+
+    if connected:
+        for node in graph.nodes:
+            x, y, label = graph.nodes[node].x, graph.nodes[node].y, graph.nodes[node].label
+            point = f"POINT({x} {y})"
+            edges = graph.edges[label]
+
+            db.execute_query(
+                QUERIES['nodes'],
+                (label, point)
+            )
+
+            db.execute_query(
+                QUERIES['edges'],
+                (
+                    extract_node_id(label),
+                    edges
+                )
+            )
+
+    for weight in graph.weights:
+        db.execute_query(
+            QUERIES['weight'],
+            (
+                extract_node_id(weight[0]),
+                extract_node_id(weight[0]),
+                graph.weights[weight]
+            )
+        )
+
+    db.close()
 
 
 def read_to_graph(file_name, should_densify_segments=False, distance=2):
@@ -52,7 +119,7 @@ def read_to_graph(file_name, should_densify_segments=False, distance=2):
 
                 new_graph.add_node(from_node=from_node, to_node=to_node,
                                    weight=new_graph.get_weight(from_node=from_node,
-                                                                     to_node=to_node))
+                                                               to_node=to_node))
             prev_coords_pair = x, y
 
     return new_graph

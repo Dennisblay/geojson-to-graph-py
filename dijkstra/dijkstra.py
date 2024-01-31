@@ -1,6 +1,3 @@
-from typing import Tuple, List, Optional, Any
-
-
 def dijkstra(graph, initial, end):
     # shortest paths is a dict of nodes
     # whose value is a tuple of (previous node, weight)
@@ -14,7 +11,7 @@ def dijkstra(graph, initial, end):
         weight_to_current_node = shortest_paths[current_node][1]
 
         for next_node in destinations:
-            weight = graph.weights[f"{current_node}-{next_node}"] + weight_to_current_node
+            weight = graph.weights[(current_node, next_node)] + weight_to_current_node
             if next_node not in shortest_paths:
                 shortest_paths[next_node] = (current_node, weight)
             else:
