@@ -23,10 +23,10 @@ class Database:
         if self.connection:
             self.connection.close()
 
-    def execute_query(self, query, fetch=False):
+    def execute_query(self, query, params, fetch=False):
         try:
             cursor = self.connection.cursor()
-            cursor.execute(query)
+            cursor.execute(query, params)
             if fetch:
                 return cursor.fetchall()
             else:

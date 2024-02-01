@@ -1,3 +1,7 @@
+ALL_QUERIES = """
+
+IF EXITS DELETE TABLE nodes edges weights;
+
 CREATE TABLE "nodes"
 (
     "id"         bigserial PRIMARY KEY,
@@ -16,7 +20,7 @@ CREATE TABLE "weights"
 (
     "from_node_id" bigint NOT NULL,
     "to_node_id"   bigint NOT NULL,
-    "distance"     double precision NOT NULL,
+    "distance"     double NOT NULL,
     PRIMARY KEY ("from_node_id", "to_node_id")
 );
 
@@ -51,3 +55,5 @@ ALTER TABLE "weights"
     ADD FOREIGN KEY ("to_node_id") REFERENCES "nodes" ("id")
         ON UPDATE CASCADE ON DELETE CASCADE;
 
+
+"""

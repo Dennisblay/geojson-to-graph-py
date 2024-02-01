@@ -1,5 +1,8 @@
+import psycopg2
 
 from database.db import Database
+from pprint import pprint
+from database.queries import ALL_QUERIES
 from shapely import Point, LineString
 from shapely.wkt import loads
 import geopandas as gdp
@@ -8,24 +11,18 @@ import re
 
 QUERIES = {
     'nodes': """
-        
         INSERT INTO nodes (name, point_geom)
-        VALUES (%s, ST_GeomFromText(%s));
-        
+        VALUES (%s, ST_GeomFromText(%s))
         """,
 
     'weight': """
-        
         INSERT INTO weights (from_node_id, to_node_id, distance)
-        VALUES (%s, %s, %s);
-        
+        VALUES (%s, %s, %s)
         """,
 
     'edges': """
-        
         INSERT INTO edges (node_id, edges)
-        VALUES (%s, %s);
-        
+        VALUES (%s, to_jsonb( %s ))
         """
 }
 
@@ -51,20 +48,29 @@ def extract_node_id(node_label_string):
     return int(match.group()) if match else None
 
 
+def init_db(db):
+    try:
+        db.execute_query(ALL_QUERIES)
+    except psycopg2.Error as e:
+        print('Could not Initialize database', e)
+    else:
+        print("DB initialized")
+
+
 def populate_db(graph):
     db = Database(dbname='routes', user='postgres', host='localhost')
     connected = db.connect()
 
     if connected:
+
         for node in graph.nodes:
             x, y, label = graph.nodes[node].x, graph.nodes[node].y, graph.nodes[node].label
-            point = f"POINT({x} {y})"
+            point = f'POINT({x} {y})'
             edges = graph.edges[label]
 
-            db.execute_query(
-                QUERIES['nodes'],
-                (label, point)
-            )
+            db.execute_query(QUERIES['nodes'],
+                             (label, point)
+                             )
 
             db.execute_query(
                 QUERIES['edges'],
@@ -74,15 +80,15 @@ def populate_db(graph):
                 )
             )
 
-    for weight in graph.weights:
-        db.execute_query(
-            QUERIES['weight'],
-            (
-                extract_node_id(weight[0]),
-                extract_node_id(weight[0]),
-                graph.weights[weight]
+        for weight in graph.weights:
+            db.execute_query(
+                QUERIES['weight'],
+                (
+                    extract_node_id(weight[0]),
+                    extract_node_id(weight[-1]),
+                    graph.weights[weight]
+                )
             )
-        )
 
     db.close()
 
