@@ -1,7 +1,5 @@
 import psycopg2
-
 from database.db import Database
-from pprint import pprint
 from database.queries import ALL_QUERIES
 from shapely import Point, LineString
 from shapely.wkt import loads
@@ -21,7 +19,7 @@ QUERIES = {
         """,
 
     'edges': """
-        INSERT INTO edges (node_id, edges)
+        INSERT INTO edges (node_id, neighbors)
         VALUES (%s, to_jsonb( %s ))
         """
 }
@@ -62,11 +60,12 @@ def populate_db(graph):
     connected = db.connect()
 
     if connected:
+        # init_db(db)
 
         for node in graph.nodes:
             x, y, label = graph.nodes[node].x, graph.nodes[node].y, graph.nodes[node].label
             point = f'POINT({x} {y})'
-            edges = graph.edges[label]
+            edges = [extract_node_id(n) for n in graph.edges[label]]
 
             db.execute_query(QUERIES['nodes'],
                              (label, point)

@@ -23,7 +23,7 @@ class Database:
         if self.connection:
             self.connection.close()
 
-    def execute_query(self, query, params, fetch=False):
+    def execute_query(self, query, params=None, fetch=False):
         try:
             cursor = self.connection.cursor()
             cursor.execute(query, params)
@@ -35,4 +35,3 @@ class Database:
         except psycopg2.Error as e:
             print(f"Error executing query: {e}")
             self.connection.rollback()
-
