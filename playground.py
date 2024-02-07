@@ -1,6 +1,6 @@
-# import geopandas as gp
-# from pprint import pprint
-#
-# gdf = gp.read_file('paths.geojson')
-# for index, row in gdf.iterrows():
-#     pprint(list(row.geometry.coords))
+import geopandas as gdp
+from pprint import pprint
+
+buildings = gdp.read_file('/home/denis/Documents/buildings_v1.shp')
+
+buildings.to_csv('results.csv')
