@@ -17,7 +17,7 @@ CREATE TABLE "weights"
     "id"           bigint NOT NULL,
     "from_node_id" bigint NOT NULL,
     "to_node_id"   bigint NOT NULL,
-    "distance"     double NOT NULL,
+    "distance"     double precision NOT NULL,
     PRIMARY KEY ("from_node_id", "to_node_id")
 );
 

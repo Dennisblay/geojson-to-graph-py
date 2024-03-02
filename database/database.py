@@ -13,7 +13,7 @@ class Database:
     def connect(self):
         try:
             self.connection = psycopg2.connect(dbname=self.dbname, user=self.user, password=self.password,
-                                               host=self.host)
+                                               host=self.host, port=5432)
             return True
         except psycopg2.Error as e:
             print(f"Error connecting to the database: {e}")
