@@ -1,5 +1,8 @@
 import psycopg2
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
 from database.db import Database
 from database.queries import ALL_QUERIES
 from shapely import Point, LineString
@@ -61,7 +64,11 @@ def populate_db(graph):
     connected = db.connect()
 
     if connected:
+<<<<<<< HEAD
         init_db(db)
+=======
+        # init_db(db)
+>>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
 
         for node in graph.nodes:
             x, y, label = graph.nodes[node].x, graph.nodes[node].y, graph.nodes[node].label
@@ -93,7 +100,11 @@ def populate_db(graph):
     db.close()
 
 
+<<<<<<< HEAD
 def read_to_graph(file_name, should_densify_segments=True, distance=2):
+=======
+def read_to_graph(file_name, should_densify_segments=False, distance=2):
+>>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
     new_graph = Graph()
     node_key_generator = NodeKeyGenerator()
 

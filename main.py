@@ -10,6 +10,7 @@ if os.path.exists(path="paths.geojson"):
 P1   (X,Y) -174320.829365919722477, 744498.63213670917321
     """
 
+<<<<<<< HEAD
     populate_db(graph)
     # distance_from_query_point, closest_node = graph.query_closest_location(x=-174320.829365919722477,
     #                                                                        y=744498.63213670917321,
@@ -35,3 +36,26 @@ P1   (X,Y) -174320.829365919722477, 744498.63213670917321
 #
 # else:
 #     print("File does not exist, Check file path integrity")
+=======
+    # pprint(graph.nodes)
+    populate_db(graph)
+    distance_from_query_point, closest_node = graph.query_closest_location(x=-174320.829365919722477,
+                                                                           y=744498.63213670917321,
+                                                                           label="P1")
+    graph.node_to_csv(closest_node)  # Save to CSV for visualization
+
+    distance, shortest_path = dijkstra(graph=graph, initial=closest_node.label,
+                                       end="n1881")  # From Query Location P1 to N-Block(Node 624)
+
+    if shortest_path:
+        graph.nodes_to_csv(paths=shortest_path, file_name="shortest_path_to_Nblock.csv")
+        graph.nodes_to_csv()
+
+        print(f"{distance}m", f"From {shortest_path[0]} To {shortest_path[-1]}")
+
+    else:
+        print("RouteNotPossible")
+
+else:
+    print("File does not exist, Check file path integrity")
+>>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633

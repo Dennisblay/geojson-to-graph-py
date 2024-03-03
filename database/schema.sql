@@ -9,12 +9,19 @@ CREATE TABLE "edges"
 (
     "id"      bigserial PRIMARY KEY,
     "node_id" bigint UNIQUE NOT NULL,
+<<<<<<< HEAD
     "neighbors"   jsonb -- '["A", "B", "C"]'
+=======
+    "edges"   jsonb -- '["A", "B", "C"]'
+>>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
 );
 
 CREATE TABLE "weights"
 (
+<<<<<<< HEAD
     "id"           bigserial NOT NULL,
+=======
+>>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
     "from_node_id" bigint NOT NULL,
     "to_node_id"   bigint NOT NULL,
     "distance"     double precision NOT NULL,
