@@ -10,7 +10,6 @@ if os.path.exists(path="paths.geojson"):
 P1   (X,Y) -174320.829365919722477, 744498.63213670917321
     """
 
-<<<<<<< HEAD
     populate_db(graph)
     # distance_from_query_point, closest_node = graph.query_closest_location(x=-174320.829365919722477,
     #                                                                        y=744498.63213670917321,
@@ -23,8 +22,6 @@ P1   (X,Y) -174320.829365919722477, 744498.63213670917321
     # if shortest_path:
     # graph.nodes_to_csv(paths=shortest_path, file_name="text_janice.csv")
     # graph.nodes_to_csv()
-    # # pprint(shortest_path)
-    # print(graph.edges['n1'])
     #
     # coords = [(graph.nodes[node].x, graph.nodes[node].y) for node in shortest_path if node in graph.nodes]
     # pprint(coords)
@@ -36,7 +33,6 @@ P1   (X,Y) -174320.829365919722477, 744498.63213670917321
 #
 # else:
 #     print("File does not exist, Check file path integrity")
-=======
     # pprint(graph.nodes)
     populate_db(graph)
     distance_from_query_point, closest_node = graph.query_closest_location(x=-174320.829365919722477,
@@ -58,4 +54,3 @@ P1   (X,Y) -174320.829365919722477, 744498.63213670917321
 
 else:
     print("File does not exist, Check file path integrity")
->>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633

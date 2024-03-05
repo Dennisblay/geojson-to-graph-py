@@ -11,11 +11,7 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="database" qname="routes">
-<<<<<<< HEAD
             <node kind="schema" negative="1" />
-=======
-            <node kind="schema" qname="public" />
->>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
           </node>
         </introspection-scope>
       </schema-mapping>

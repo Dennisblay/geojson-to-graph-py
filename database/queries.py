@@ -2,7 +2,6 @@ ALL_QUERIES = """
 
 BEGIN;
 
-<<<<<<< HEAD
 -- Remove Foreign Keys
 ALTER TABLE "weights"
     DROP CONSTRAINT IF EXISTS weights_to_node_id_fkey;
@@ -81,7 +80,6 @@ ALTER TABLE "weights"
     ADD FOREIGN KEY ("to_node_id") REFERENCES "nodes" ("id")
         ON UPDATE CASCADE ON DELETE CASCADE;
 
-=======
 -- Drop tables if they exist (in reverse order due to dependencies)
 DROP TABLE IF EXISTS weights CASCADE;
 DROP TABLE IF EXISTS edges CASCADE;
@@ -129,7 +127,6 @@ ALTER TABLE weights
 ALTER TABLE weights
     ADD FOREIGN KEY (to_node_id) REFERENCES nodes (id)
     ON UPDATE CASCADE ON DELETE CASCADE;
->>>>>>> 4032d35bb5f47b7cc285a62da9f5bd4f1d327633
 
 COMMIT;
 
