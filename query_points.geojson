@@ -1,9 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "query_points",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::3857" } },
-"features": [
-{ "type": "Feature", "properties": { "label": "P1" }, "geometry": { "type": "Point", "coordinates": [ -174320.829365919722477, 744498.63213670917321 ] } },
-{ "type": "Feature", "properties": { "label": "P2(NBlock)" }, "geometry": { "type": "Point", "coordinates": [ -174245.779204784892499, 744661.922236210200936 ] } }
-]
-}
