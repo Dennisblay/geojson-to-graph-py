@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import re
 
 import geopandas as gdp
@@ -5,6 +6,11 @@ import psycopg2
 from database import Database
 from queries import ALL_QUERIES
 from graph import Node, Graph
+=======
+import psycopg2
+from database.db import Database
+from database.queries import ALL_QUERIES
+>>>>>>> 0b9a498932a197b2fab328a3c0b7fde6fa113952
 from shapely import Point, LineString
 from shapely.wkt import loads
 
@@ -57,6 +63,10 @@ def populate_db(graph):
 
     if connected:
         init_db(db)
+<<<<<<< HEAD
+=======
+        # init_db(db)
+>>>>>>> 0b9a498932a197b2fab328a3c0b7fde6fa113952
 
         for node in graph.nodes:
             x, y, label = graph.nodes[node].x, graph.nodes[node].y, graph.nodes[node].label
