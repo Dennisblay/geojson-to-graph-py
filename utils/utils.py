@@ -1,28 +1,11 @@
 import psycopg2
-from database.db import Database
-from database.queries import ALL_QUERIES
 from shapely import Point, LineString
 from shapely.wkt import loads
 import geopandas as gdp
 from graph.graph import Node, Graph
 import re
 
-QUERIES = {
-    'nodes': """
-        INSERT INTO nodes (name, point_geom)
-        VALUES (%s, ST_GeomFromText(%s))
-        """,
 
-    'weight': """
-        INSERT INTO weights (from_node_id, to_node_id, distance)
-        VALUES (%s, %s, %s)
-        """,
-
-    'edges': """
-        INSERT INTO edges (node_id, neighbors)
-        VALUES (%s, to_jsonb( %s ))
-        """
-}
 
 
 class NodeKeyGenerator:
@@ -45,52 +28,6 @@ def extract_node_id(node_label_string):
     match = re.search(r'\d+', node_label_string)
     return int(match.group()) if match else None
 
-
-def init_db(db):
-    try:
-        db.execute_query(ALL_QUERIES)
-    except psycopg2.Error as e:
-        print('Could not Initialize database', e)
-    else:
-        print("DB initialized")
-
-
-def populate_db(graph):
-    db = Database(dbname='routes', user='postgres', host='localhost')
-    connected = db.connect()
-
-    if connected:
-        init_db(db)
-        # init_db(db)
-
-        for node in graph.nodes:
-            x, y, label = graph.nodes[node].x, graph.nodes[node].y, graph.nodes[node].label
-            point = f'POINT({x} {y})'
-            edges = [extract_node_id(n) for n in graph.edges[label]]
-
-            db.execute_query(QUERIES['nodes'],
-                             (label, point)
-                             )
-
-            db.execute_query(
-                QUERIES['edges'],
-                (
-                    extract_node_id(label),
-                    edges
-                )
-            )
-
-        for weight in graph.weights:
-            db.execute_query(
-                QUERIES['weight'],
-                (
-                    extract_node_id(weight[0]),
-                    extract_node_id(weight[-1]),
-                    graph.weights[weight]
-                )
-            )
-
-    db.close()
 
 
 def read_to_graph(file_name, should_densify_segments=False, distance=2):
